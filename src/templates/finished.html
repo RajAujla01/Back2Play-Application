@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    .para {font-family: 'Montserrat', sans-serif;}
+
+    .title {font-family: 'Montserrat', sans-serif;
+            font-size: 24px;}
+
+    .link:link, link:visited {
+        text-decoration: none;
+        color: inherit;
+
+    }
+
+    .a:visited, a:link {
+        text-decoration: none;
+    }
+
+
+</style>
+
+
+<br>
+<br>
+<p class="title">Congratulations on completing your Back 2 Play exercise training program!</p>
+<p class="para"> You've just unlocked a new level of fitness and commitment. We're incredibly proud of your dedication and hard work. But guess what? Your fitness journey doesn't end here. </p>
+<p class="para">Stay tuned because more exciting routines are on the way, designed to challenge and elevate your performance. Keep pushing your limits and achieving greatness!</p>
+<p class="para">And here's a little secret: if you want to relive this fantastic journey or start from a specific point, you can easily change your 'position' via the <a class="link" href="{% url 'changeposition' %}">Edit current position</a> page. It's all about making Back 2 Play work for you!
+    
+Once again, congratulations on your achievement. We can't wait to see where your fitness journey takes you next!</p>
+
+
+   
+    
+    
+    
+    
+
+{% endblock content %}

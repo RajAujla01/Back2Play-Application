@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+
+.everything{
+        margin-bottom: 20px;
+        margin-left: 100px;
+        width: 100%;
+        padding:0px;
+      }
+
+.h1, p, form {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+        }
+.submitbut{
+    background-color: #063146;
+                color: white;
+                padding: 14px 25px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-family: 'Montserrat', sans-serif;
+}
+
+
+    
+</style>
+
+{% if request.user.is_authenticated %}
+
+<div class="container">
+    <div class="row">
+    <div class="everything">
+
+<h1>Choose your starting point</h1>
+
+
+
+<p>You are currently on Workout: {{ user.profile.position }}</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="new_position">Enter the Workout Number you would like to start from:</label>
+        {{ form }}
+
+        <input type="text" id="change" name="change" required><br><br>
+     
+        <input class="submitbut" type="submit" value="Change Position">
+    </form>
+
+
+    
+{% endif %}
+
+</div>
+</div>
+</div>
+
+{% endblock content %}

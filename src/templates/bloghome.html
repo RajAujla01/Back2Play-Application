@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<style type="text/css">
+
+	@media only screen and (max-width: 600px) {
+		body {
+		  .everything {
+			max-width: 480px;
+		  }
+		}
+	  }
+
+	.everything{
+        margin-bottom: 20px;
+        margin-left: 100px;
+        width: 100%;
+        padding:0px;
+      }
+
+	  
+	.h2 {
+		font-family: 'Montserrat', sans-serif;
+		  }
+
+	.p {
+			font-family: 'Montserrat', sans-serif;
+			  }
+
+	.create-blog-button{
+		background-color: #063146;
+		color: white;
+		padding: 14px 25px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	.searchbar {
+		color: aliceblue;
+	}
+
+	
+	
+
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="everything">
+
+
+					
+				<h2 class="h2">Join in with the Back2Play community by reading and sharing blogs!</h2>
+
+				<div class="searchbar">
+					<form method="get">
+						<input type="text" class="searchbarform" name="q" id="id_q" placeholder="Search through the blogs!.....">
+					</form>
+				</div>
+
+				<p><a class="create-blog-button" href="{% url 'blog:create' %}">Create a post!</a></p>
+	
+	
+			<!-- end Top 'create post' bar -->
+
+
+			{% if blog_posts %}
+
+			<!-- Blog posts-->
+			{% for post in blog_posts %}
+				<div>
+					{% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
+				</div>
+			{% endfor %}
+			{% else %}
+				<div>
+					{% include 'blog/snippets/blog_post_snippet.html' with query=query %}
+				</div>
+
+			{% endif %}
+			<!-- End Blog posts-->
+
+			<!-- Pagination -->
+			{% include 'blog/snippets/blog_post_pagination.html' with blog_posts=blog_posts %}
+
+		
+		<!-- end blog feed -->
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		
+	</div>
+</div>
+</div>
+<br>
+<br>
+{% endblock content %}

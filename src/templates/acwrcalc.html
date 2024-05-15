@@ -1,0 +1,95 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+
+.everything{
+        margin-bottom: 20px;
+        margin-left: 100px;
+        width: 100%;
+        padding:0px;
+      }
+.form {
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.home-button{
+    background-color: #063146;
+              color: white;
+              padding: 14px 25px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+  }
+
+  .h1, p{
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .acwr-button {
+    background-color: #063146;
+        color: white;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-family: 'Montserrat', sans-serif;
+
+}
+
+.form{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+</style>
+
+{% if request.user.is_authenticated %}
+
+<div class="container">
+<div class="row">
+<div class="everything">
+    <h1 class="h1">Acute Chronic Workload Ratio Calculator</h1>
+    <form class="form" method="post">
+        {% csrf_token %}
+
+        <label for="w1">Week 1:</label><br>
+        <input type="text" id="week1" name="week1"><br>
+
+        <label for="w2">Week 2:</label><br>
+        <input type="text" id="week2" name="week2"><br>
+
+        <label for="w3">Week 3:</label><br>
+        <input type="text" id="week3" name="week3"><br>
+
+        <label for="w4">Week 4:</label><br>
+        <input type="text" id="week4" name="week4"><br>
+        <br>
+        <button class="acwr-button" type="submit">Calculate Acute Chronic Work Load Ratio</button>
+        <br>
+        <br>
+        <a class="home-button" href="{% url 'home' %}">Back to home</a>  
+    </form>
+
+    
+    {% endif %}
+<p class="p">Acute Chronic Work Load Ratio: {{ acwr }}</p>
+</div>
+<br>
+<br>
+</div>
+<br>
+<br>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock content %}

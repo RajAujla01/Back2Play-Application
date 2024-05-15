@@ -1,0 +1,55 @@
+
+<style type="text/css">
+    
+
+.sidebar {
+
+        background: #042331;
+
+    }
+
+.sidebar header{
+        font-size: 24px;
+        color: white;
+        text-align: center;
+        line-height: 75px;
+        background: #063146;
+        user-select: none;
+    }
+
+.sidebar ul a{
+        display: block;
+        height: 100%;
+        width: 100%;
+        line-height: 65px;
+        font-size: 20px;
+        color: white;
+        padding-left: 40px;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(255, 255, 255, .1);
+        border-bottom: 1px solid black;
+        transition: .4s;
+
+    }
+
+ul li:hover a{
+        padding-left: 50px;
+
+    }
+</style>
+
+
+
+<div class="b2psidebar">
+    <header>Main Menu</header>
+        <ul>
+            <li> <a href="{% url 'account' %}" > Profile </a> </li>
+            <li> <a href="{% url 'workout' %}"> Next Workout</a> </li>
+            <li> <a href="{% url 'workouthistory' %}"> View Exercise History</a> </li>
+            <li> <a href="{% url 'acwrcalc' %}"> Acute Chronic Work Load Ratio Calculator</a> </li>
+            <li> <a href="{% url 'library' %}"> Exercise Library </a> </li>
+            <li> <a href="{% url 'bloghome' %}"> Blog </a> </li>
+        </ul>
+</div>
+
+

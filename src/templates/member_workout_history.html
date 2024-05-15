@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    
+    .everything{
+        margin-bottom: 20px;
+        margin-left: 100px;
+        width: 100%;
+        padding:0px;
+      }
+
+</style>
+
+
+<div class="container">
+    <div class="row">
+    <div class="everything">
+
+<form method="POST" action="{% url 'member_workout_history' %}">
+    {% csrf_token %}
+    <label for="memberposition">Member Position:</label>
+    <input type="text" id="memberposition" name="memberposition" required><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+</div>
+</div>
+</div>
+
+{% endblock content %}

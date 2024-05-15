@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<style type="text/css">
+
+    .everything{
+            margin-bottom: 20px;
+            margin-left: 100px;
+            width: 100%;
+            padding:0px;
+          }
+    
+     /* Styling for the buttons */
+     .progress-button {
+      padding: 10px 20px;
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
+    }
+    
+    /* Styling for the buttons when hovered */
+    .progress-button:hover {
+      background-color: darkred;
+    }
+    
+    /* Styling for the buttons when they're green */
+    .progress-button.green {
+      background-color: green;
+    }
+    
+    </style>
+    
+    <script>
+      function changeColor(button) {
+        if (button.classList.contains("green")) {
+          button.classList.remove("green");
+          button.innerHTML = "Progress";
+        } else {
+          button.classList.add("green");
+          button.innerHTML = "Completed";
+        }
+      }
+    </script>
+    
+    
+    
+    {% if request.user.is_authenticated %}
+    
+    <div class="container">
+    <div class="row">
+    <div class="everything">
+    
+    
+    <h1>Your routine progression has been saved!</h1>
+    <div class="d-flex flex-column pb-3">
+      <img class="img-fluid mx-auto d-block" src="{% static 'b2plogo.jpeg' %}" alt="scary_face_at_dans" width="72" height="72">
+    </div>   
+    
+    <p>You have successfulllllllllllllllly saaaaaaaaaaaaaaaaaaaaaaaaaved your new workout stage!
+      last_workout_date.html
+  </p>
+
+    <p>You are now on workout: {{ user.profile.position }}</p>
+
+    <a class="p-2 text-dark" href="{% url 'home' %}">Back to the home page!!!</a>
+        
+        {% endif %}
+    
+    </div>
+    </div>
+    </div>
+    
+    {% endblock content %}

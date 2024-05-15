@@ -1,0 +1,119 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+
+  .everything{
+    margin-bottom: 20px;
+    margin-left: 100px;
+    width: 100%;
+    padding:0px;
+  }
+
+
+  .table-content {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em; /*easier for mobile devices */
+    min-width: 400px;
+    font-family: 'Montserrat', sans-serif;
+    
+    }
+
+  .table-content thead tr {
+    background-color: #393535;
+    text-align: left;
+
+  }
+
+  .table-content th,
+  .table-content td {
+    padding: 12px 15px;
+  }
+
+  .table-content tbody tr td {
+    border-bottom: 1px solid #dddddd;
+    
+  }
+
+  .table-content tbody tr:nth-of-type(odd) {
+    background-color: #4e4a4a;
+  }
+
+  .table-content tbody tr:nth-of-type(even) {
+    background-color: #8E8E8E;
+  }
+
+
+  .h1, h3{
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .h1{
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .h2, h4{
+    font-family: 'Montserrat', sans-serif;
+  }
+
+</style>
+
+
+
+{% if request.user.is_authenticated %}
+<div class="container">
+<div class="row">
+<div class="everything">
+
+
+<h3>Workout History</h3>
+
+
+<h3>You next workout is Workout: {{ user.profile.position }}</h3>
+<br>
+
+
+{% for group, history_value in group_history_pairs %}
+    <h3>Workout Number: {{ group.0.workout_num }}</h3>
+    <h4>Completed on: {{ history_value }}</h4>
+        
+        <div class="table-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Exercise</th>
+                <th>Sets</th>
+                <th>Reps</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for session in group %}
+              <tr>
+                <td>{{ session.exercise_name }}</td>
+                <td>{{ session.sets }}</td>
+                <td>{{ session.reps }}</td>
+              </tr>
+              {% endfor %} 
+            </tbody>
+            </table>
+          </div>
+          <br>
+{% endfor %}
+<br>
+
+
+
+</div>
+<br>
+</div>
+<br>
+</div>
+<br>
+
+{% endif %} 
+
+
+{% endblock content %}

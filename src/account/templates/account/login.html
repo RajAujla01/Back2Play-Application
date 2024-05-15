@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style type="text/css">
+        .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+
+        }
+       
+        .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+        z-index: 2;
+        }
+        .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        }
+        .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        }
+
+        .h3{
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        }
+
+        .password-reset {
+            align-items: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+        }
+
+        .resetp {
+            background-color: #063146;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .login-button {
+            background-color: #063146;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+        }
+    
+</style>
+
+<form class="form-signin" method="post">{% csrf_token %}
+
+
+    
+    <h1>Login here</h1>
+
+
+    <input type="email" name ="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+    {% for field in  login_form %}
+    <p>
+        {% for error in field.errors %}
+        <p style="color: rgba(244, 5, 5, 0.956);">{{error}}
+        {% endfor %}
+    </p>
+    {% endfor %}
+
+    {% if login_form.non_field_errors %}
+        <div style="color:rgba(234, 8, 8, 0.932);">
+            <p>{{login_form.non_field_errors}}</p>
+        </div>
+    {% endif %}
+
+    <button class="login-button" type="submit">Log in</button>
+    <br>
+    <br>
+
+    <div>
+        <a class="resetp" href="{% url 'password_reset' %}">Reset password</a>
+    </div>
+
+  </form>
+
+
+
+{% endblock content %}

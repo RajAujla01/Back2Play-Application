@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+#{% block content %}
+<style type="text/css">
+
+    .everything{
+            margin-bottom: 20px;
+            margin-left: 100px;
+            width: 100%;
+            padding:0px;
+          }
+    
+        
+</style>
+
+{% if request.user.is_authenticated %}
+
+<div class="container">
+<div class="row">
+<div class="everything">
+
+
+<form method="post">
+  {% csrf_token %}
+
+  <label for="new_position">Here is where your user account will be initialised:</label>
+
+  {{ form }}
+
+  <input type="hidden" id="startnum" name="startnum" value="1" required><br><br>
+
+  <input type="submit" value="submit">
+</form>
+
+{{ test }}
+
+</div>
+</div>
+</div>
+
+{% endif %}
+
+
+{% endblock content %}

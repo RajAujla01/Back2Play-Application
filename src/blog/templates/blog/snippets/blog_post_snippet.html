@@ -1,0 +1,86 @@
+<style type="text/css">
+	.card{
+		width: 100%;
+		font-family: 'Montserrat', sans-serif;
+		page-break-after: always;
+	}
+	.card-body{
+		padding: 20px;
+		font-family: 'Montserrat', sans-serif;
+		
+	}
+
+	.card-body{
+		padding: 20px;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	.update-button{
+		background-color: #063146;
+		color: white;
+		padding: 14px 25px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	.card-footer{
+		padding: 20px;
+		font-family: 'Montserrat', sans-serif;
+		
+	}
+
+	.card-text{
+		padding: 20px;
+		font-family: 'Montserrat', sans-serif;
+		
+	}
+</style>
+
+{% if blog_post %}
+<div class="container">
+	<div class="row">
+		<!-- Blog Post -->
+		<div class="card">
+			<a href="{% url 'blog:detail' post.slug %}">
+				<img class="card-img" src="{{blog_post.image.url}}">
+			</a>
+			
+			<div class="card-body">
+				<a href="{% url 'blog:detail' post.slug %}">
+					<h2 class="card-title">{{blog_post.title}}</h2>
+				</a>
+				<p class="card-text">{{blog_post.body|safe|truncatechars:180}}</p>
+				<p>
+					{% if blog_post.author == request.user %}
+						<a href="{% url 'blog:edit' blog_post.slug %}" class="update-button">Update</a>
+					{% endif %}
+				</p>
+			</div>
+
+			<div class="card-footer">
+			  Updated on {{blog_post.date_updated}} by {{blog_post.author}}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% else %}
+
+<div class="container">
+	<div class="row">
+		<div class="card m-auto">
+			<div class="card-body mt-2 mb-2">
+				<h2 class="card-title">
+					No results
+				</h2>
+				<p class="card-text">
+					There were no results matching your search: "{{query}}".
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endif %}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Webpage</title>
+    <!-- Include Bootstrap CSS (you can replace this with your own styles) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for responsiveness */
+        .sidebar {
+            background-color: #333;
+            color: white;
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: 0.3s;
+        }
+
+        .sidebar.show {
+            left: 0;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .sidebar {
+                left: 0;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Your Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Settings</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <h1>Welcome to Your Dashboard</h1>
+        <p>This is where your content goes. It will expand and shrink as you resize the window, and there will be no overlap with the sidebar or header.</p>
+    </div>
+
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript to toggle sidebar on small screens -->
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('show');
+            });
+        });
+    </script>
+</body>
+</html>

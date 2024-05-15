@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+
+    .everything{
+        margin-bottom: 20px;
+        margin-left: 100px;
+        width: 100%;
+        padding:0px;
+      }
+
+    .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+
+    text-align: center;
+            text-decoration: none;
+            display: inline-block;
+
+  
+    }
+    
+    .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    }
+    
+    .form-signin input[type="email"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="username"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    }
+
+    .h3{
+        text-align: center;
+    }
+
+    .h1, h3, p, form {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+    }
+    
+    .blog-posts{
+        max-width: 500px;
+        width: 100%;
+
+    }
+
+    .save-button {
+        background-color: #063146;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+  }
+
+  .change-button {
+    background-color: #063146;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+  }
+  .list-group-item{
+    text-decoration: none;
+  }
+
+
+.list-group-item:visited {
+    text-decoration: none; 
+    color: inherit; 
+}
+    
+</style>
+
+<div class="container">
+    <div class="row">
+    <div class="everything">
+
+<form class="form-signin" method="post">{% csrf_token %}
+
+<h1>My Profile</h1>
+
+<p>You can view your account statistics and/or change your user account details here</p>
+
+<p>
+    You have been a member since: {{ date_joined }}
+    <br>
+    <br>
+    Your last sign in was at: {{ lastlogin }}
+    <br>
+    <br>
+    Date your last workout was completed: {{ latest_value }}
+    <br>
+    <br>
+    Most advanced session completed on: {{ last_session_complete }}
+    <br>
+    <br>
+    Time between now and when the last workout was completed: {{ time_difference_str }}
+    <br>
+
+</p>
+
+<p>{{ ready_or_not }} </p>
+
+
+
+<input type="email" name ="email" id="inputEmail" class="form-control" placeholder="Email address" >
+
+<input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" >
+<br>
+
+{% for field in  account_form %}
+<p>
+    {% for error in field.errors %}
+    <p style="color: red;">{{error}}
+    {% endfor %}
+</p>
+{% endfor %}
+
+{% if account_form.non_field_errors %}
+    <div style="color:red;">
+        <p>{{account_form.non_field_errors}}</p>
+    </div>
+{% endif %}
+
+{% if success_message %}
+    <p style="color: green; text-align: center;">{{success_message}}</p>
+{% endif %}
+<br>
+<button class="save-button" type="submit">Save changes</button>
+<br>
+<br>
+<div>
+    <a class="change-button" href="{% url 'password_change' %}">Change password</a>
+</div>
+
+</form>
+
+
+<div class="container"> 
+    <div class="row">
+        <div class="blog-posts">
+            <h3 class="h3">Your blog posts:</h3>
+            {% if blog_posts %}
+            <ul>
+                {% for post in blog_posts %}
+                <a href="{% url 'blog:detail' post.slug %}" style="text-decoration: none;">
+                    <li class="list-group-item">
+                        {{post}}
+                    </li>
+                </a>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>You have no blog posts. Create a post <a href="{% url 'blog:create' %}">here</a>.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<br>
+
+</div>
+<br>
+</div>
+<br>
+</div>
+<br>
+
+{% endblock content %}

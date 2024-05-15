@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<style type="text/css">
+
+    .everything{
+            margin-bottom: 20px;
+            margin-left: 100px;
+            width: 100%;
+            padding:0px;
+          }
+    
+     /* Styling for the buttons */
+     .progress-button {
+      padding: 10px 20px;
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
+    }
+    
+    /* Styling for the buttons when hovered */
+    .progress-button:hover {
+      background-color: darkred;
+    }
+    
+    /* Styling for the buttons when they're green */
+    .progress-button.green {
+      background-color: green;
+    }
+    
+    .home-button{
+      background-color: #063146;
+                color: white;
+                padding: 14px 25px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-family: 'Montserrat', sans-serif;
+    }
+
+    .h2 {
+      font-family: 'Montserrat', sans-serif;
+        }
+
+.h1{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+    </style>
+    
+    <script>
+      function changeColor(button) {
+        if (button.classList.contains("green")) {
+          button.classList.remove("green");
+          button.innerHTML = "Incomplete";
+        } else {
+          button.classList.add("green");
+          button.innerHTML = "Completed";
+        }
+      }
+    </script>
+    
+    
+    
+    {% if request.user.is_authenticated %}
+    
+    <div class="container">
+    <div class="row">
+    <div class="everything">
+    
+    
+    <h1>You successfully completed the workout! Well done!</h1>
+
+    <h2>You have just completed workout: {{ position }} on {{ the_date }} </h2>
+
+    <p>Way to go, superstar! You've just aced your workout, there's no stopping you. Progress comes from these small wins, so keep that fire alive!</p>
+
+    <a class="home-button" href="{% url 'home' %}">Save changes & Go Home</a>
+
+
+
+    
+        
+        {% endif %}
+    
+    </div>
+    </div>
+    </div>
+    
+    {% endblock content %}

@@ -1,0 +1,204 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+
+.everything{
+        margin-bottom: 20px;
+        margin-left: 100px;
+        width: 100%;
+        padding:0px;
+      }
+
+ /* Styling for the buttons */
+ .progress-button {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Styling for the buttons when hovered */
+.progress-button:hover {
+  background-color: darkred;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Styling for the buttons when they're green */
+.progress-button.green {
+  background-color: green;
+  font-family: 'Roboto', sans-serif;
+}
+
+.table-content {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em; /*easier for mobile devices */
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+
+  
+  }
+
+.table-content thead tr {
+  background-color: #393535;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.table-content th,
+.table-content td {
+  padding: 12px 15px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.table-content tbody tr td {
+  border-bottom: 1px solid #dddddd;
+  
+}
+
+.table-content tbody tr:nth-of-type(odd) {
+  background-color: #4e4a4a;
+}
+
+.table-content tbody tr:nth-of-type(even) {
+  background-color: #8E8E8E;
+}
+
+
+.h3{
+      font-family: 'Montserrat', sans-serif;
+        }
+
+
+
+.home-button{
+  background-color: #063146;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+}
+
+.vid-button{
+  background-color: #063146;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.finish-button{
+  background-color: #063146;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+}
+
+</style>
+
+<script>
+  function changeColor(button) {
+    if (button.classList.contains("green")) {
+      button.classList.remove("green");
+      button.innerHTML = "Incomplete";
+    } else {
+      button.classList.add("green");
+      button.innerHTML = "Completed";
+    }
+  }
+</script>
+
+
+{% if request.user.is_authenticated %}
+
+<div class="container">
+<div class="row">
+<div class="everything">
+
+
+<h3 class="h3">Next Workout</h3>
+
+
+<h3 class="h3">Workout: {{ user.profile.position }}</h3>
+
+
+    {% for session in workout_sessions %}
+
+                {% if user.profile.position == session.workout_num %}
+
+                <div class="table-content">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Workout #</th>
+                          <th>Exercise</th>
+                          <th>Sets</th>
+                          <th>Reps</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>{{ session.workout_num }}</td>
+                          <td>{{ session.exercise_name }}</td>
+                          <td>{{ session.sets }}</td>
+                          <td>{{ session.reps }}
+
+                            <button class="progress-button" onclick="changeColor(this)">Incomplete</button>
+
+                          </td>
+                        </tr>
+                      </tbody>
+                      </table>
+                      </div>
+                {% endif %}
+
+            
+    {% endfor %}
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <a class="home-button" href="{% url 'home' %}">Back to home</a>  
+        <a class="vid-button" href="{% url 'workoutvid' %}">Show video</a> 
+        <a class="finish-button" href="{% url 'workoutsuccess' %}">Finish Workout</a> 
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    {% endif %}
+
+</div>
+<br>
+</div>
+<br>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock content %}

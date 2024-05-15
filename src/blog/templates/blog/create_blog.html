@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+    .create-form {
+          width: 100%;
+          max-width: 100%;
+          padding: 15px;
+          margin: auto;
+          font-family: 'Montserrat', sans-serif;
+          align-items: left;
+        }
+  
+        .submit-button{
+            max-width: 200px;
+                background-color: #063146;
+                color: white;
+                padding: 14px 25px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-family: 'Montserrat', sans-serif;
+                align-items: center;
+            }
+
+        .form-group-title {
+            align-items: center;
+        }
+
+        .form-group-content {
+            align-items: center;
+        }
+
+        .form-group-image {
+            align-items: center;
+        }
+
+  </style>
+  
+  <div class="container">
+      <div class="row">
+          <div class="">
+              <form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+  
+                  <!-- title -->
+                  <div class="form-group-title">
+                      <label for="id_title">Title</label>
+                      <input class="form-control" type="text" name="title" id="id_title" placeholder="Title">
+                  </div>
+  
+                  <!-- Body -->
+                  <div class="form-group-content">
+                      <label for="id_body">Content</label>
+                      <textarea class="form-control" rows="10" type="text" name="body" id="id_body" placeholder="This Back2Play blog is about..." ></textarea>
+                  </div>
+  
+                  <!-- Image -->
+                  <div class="form-group-image">
+                      <label for="id_image">Image</label>
+                      <input  type="file" name="image" id="id_image" accept="image/*" required>
+                  </div>
+  
+                  <!-- Submit btn -->
+                  <button class="submit-button" type="submit">Post</button>
+              </form>	
+          </div>
+      </div>
+  </div>
+
+{% endblock content %}  
+
